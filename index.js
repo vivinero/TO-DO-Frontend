@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:3001/api";
+const API_URL = "https://to-do-list-backendd.onrender.com";
 
 const taskForm = document.getElementById("taskForm");
 const taskInput = document.getElementById("taskInput");
@@ -21,7 +21,7 @@ taskForm.addEventListener("submit", async (e) => {
         if (res.ok) {
             const save = confirm("Do you want to save this task and view it later?");
             if (save) {
-                window.location.href = "signup.html"; // make sure this file exists
+                window.location.href = "signup.html";
             } else {
                 loadTasks();
             }
