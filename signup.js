@@ -1,5 +1,5 @@
 // signup.js
-const API_URL = "http://localhost:3000/api";
+const API_URL = "https://to-do-list-backendd.onrender.com";
 
 document.getElementById("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -18,7 +18,7 @@ document.getElementById("signupForm").addEventListener("submit", async (e) => {
 
     if (res.ok) {
       alert("Signup successful!");
-      // Redirect to tasks or login page
+      // Redirect to tasks or todo page
       window.location.href = "index.html";
     } else {
       alert(data.message || "Signup failed");

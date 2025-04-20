@@ -2,16 +2,80 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sign Up</title>
+  <link rel="stylesheet" href="signUpStyles.css" />
 </head>
 <body>
-  <h2>Sign Up to Save Your Tasks</h2>
-  <form id="signupForm">
-    <input type="email" id="email" placeholder="Email" required />
-    <input type="password" id="password" placeholder="Password" required />
-    <button type="submit">Sign Up</button>
-  </form>
+  <main class="container">
+    <h1>Sign Up</h1>
 
-  <script src="signup.js"></script>
+    <form id="signUpForm">
+      <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" id="lastName" name="lastName" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input type="tel" id="phoneNumber" name="phoneNumber" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required />
+      </div>
+
+      <button type="submit">Sign Up</button>
+    </form>
+
+    <p>Already have an account? <a href="index.html">Back to To-Do List</a></p>
+  </main>
+
+  <script>
+    document.getElementById("signUpForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const data = {
+        firstName: document.getElementById("firstName").value.trim(),
+        lastName: document.getElementById("lastName").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phoneNumber: document.getElementById("phoneNumber").value.trim(),
+        password: document.getElementById("password").value.trim(),
+      };
+
+      try {
+        const response = await fetch("https://h-task2.onrender.com/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert(`Success: ${result.message}`);
+          window.location.href = "index.html"; // Redirect to To-Do List
+        } else {
+          alert(`Error: ${result.error || "Unable to sign up"}`);
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        alert("Something went wrong. Please try again.");
+      }
+    });
+  </script>
 </body>
 </html>

@@ -21,7 +21,7 @@ taskForm.addEventListener("submit", async (e) => {
         if (res.ok) {
             const save = confirm("Do you want to save this task and view it later?");
             if (save) {
-                window.location.href = "signup.html";
+                window.location.href = "signup.index.html";
             } else {
                 loadTasks();
             }
